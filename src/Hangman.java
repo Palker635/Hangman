@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.util.Scanner;
 import java.io.*;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Hangman {
     public static void main(String[] args) {
@@ -20,18 +21,17 @@ public class Hangman {
 
 
 
-        if (choice == "friend") {
+        if (choice.equalsIgnoreCase("friend")) {
         System.out.println("Let 1 player choose a word and then let the other player begin guessing letters.");
 
         System.out.println("Write down your guess");
         Scanner guess = new Scanner(System.in);
-        String[] ord = {"ord.txt"};
 
         }
 
-        else if (choice == "bot") {
+        else if (choice.equalsIgnoreCase("bot")) {
 
-            String filePath = args[0];
+        //    String filePath = args[0];
             String[] lines = null;
 
             try (Scanner scan = new Scanner(new File("words.txt"))) {
@@ -41,16 +41,32 @@ public class Hangman {
                     lines[i] = scan.nextLine();
                 }
 
-                System.out.println("Display results:");
-                for (String line : lines) {
+/*                for (String line : lines) {
                     System.out.println(line);
                 }
+*/
+
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
 
             }
 
-        }
+
+
+                    Random rand = new Random();
+                    int upperbound=999;
+                    //generate random values from 0-24
+                    int int_random = rand.nextInt(upperbound);
+                    System.out.println("Random integer value from 0 to " + (upperbound-1) + " : "+ int_random);
+
+            String botord = (lines[int_random]);
+
+                }
+
+
+
+
+
 
         else if (!(choice != "bot" && choice != "friend")) {
             System.out.println("Error, you have to write either bot or friend");
